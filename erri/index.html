@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín? ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.5s ease;
+        }
+        h1 {
+            color: #ff4d4d;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .button {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        #yesButton {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #yesButton:hover {
+            transform: scale(1.1);
+        }
+        #noButton {
+            background-color: #999;
+            color: white;
+            position: absolute;
+        }
+        #content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .tenor-gif-embed {
+            margin-bottom: 20px;
+            max-width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1 id="question">¿Quieres ser mi San Valentín? 😘💖</h1>
+        <div class="tenor-gif-embed" data-postid="27324918" data-share-method="host" data-aspect-ratio="1" data-width="30%"></div>
+        <script async src="https://tenor.com/embed.js"></script>
+        <div id="content">
+            <div id="kittens">
+                <div class="tenor-gif-embed" data-postid="24894827" data-share-method="host" data-aspect-ratio="1" data-width="20%"></div>
+            </div>
+            <script async src="https://tenor.com/embed.js"></script>
+            <div>
+                <button id="yesButton" class="button">¡Sip! ❤️</button>
+                <button id="noButton" class="button">Todavía no 😘</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const main = document.getElementById('main');
+        let noClickCount = 0;
+        let moveTimeout;
+        let canMove = true;
+
+        yesButton.addEventListener('click', () => {
+            document.body.style.backgroundColor = '#ffcccc';
+            main.innerHTML = `
+                <h1 style="color: #ff4d4d; font-size: 3em;">¡Siuuu, soy feliiiiiz! 💖</h1>
+                <div class="tenor-gif-embed" data-postid="13759391442761662032" data-share-method="host" data-aspect-ratio="1.0375" data-width="100%"></div>
+                <p style="font-size: 1.5em;">Te amo, y eso jamás va a cambiar ❤️</p>
+                <button id="nextButton" class="button">Siguiente ❤️</button>
+            `;
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.async = true;
+                script.src = 'https://tenor.com/embed.js';
+                document.body.appendChild(script);
+            }, 100);
+
+            document.getElementById('nextButton').addEventListener('click', () => {
+                main.innerHTML = `
+                    <h1 style="color: #ff4d4d; font-size: 3em;">Siiiiiu, tal vez te bese 😳</h1>
+                    <div class="tenor-gif-embed" data-postid="231770411604632484" data-share-method="host" data-aspect-ratio="1.09211" data-width="100%"></div>
+                    <p style="font-size: 1.5em;">Pero solo si tú quieres... 😘</p>
+                    <button id="nextButton2" class="button">Siguiente ❤️</button>
+                `;
+                setTimeout(() => {
+                    const script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    script.src = 'https://tenor.com/embed.js';
+                    document.body.appendChild(script);
+                }, 100);
+
+                document.getElementById('nextButton2').addEventListener('click', () => {
+                    main.innerHTML = `
+                        <h1 style="color: #ff4d4d; font-size: 3em;">¿Podemos ir a comer algo después? 😊</h1>
+                        <div class="tenor-gif-embed" data-postid="17024118" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+                        <p style="font-size: 1.5em;">¿Un helado, caminar un poco y pasarlo bonito? 🍦🚶‍♀️💖</p>
+                    `;
+                    setTimeout(() => {
+                        const script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.async = true;
+                        script.src = 'https://tenor.com/embed.js';
+                        document.body.appendChild(script);
+                    }, 100);
+                });
+            });
+        });
+
+        function moveButton() {
+            if (!canMove) return;
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        noButton.addEventListener('mouseover', moveButton);
+
+        moveTimeout = setTimeout(() => {
+            canMove = false;
+            noButton.removeEventListener('mouseover', moveButton);
+        }, 10000);
+
+        noButton.addEventListener('click', () => {
+            noClickCount++;
+            if (noClickCount === 1) {
+                main.innerHTML = `
+                    <h1 style="color: #ff4d4d; font-size: 3em;">Oh no... 💔</h1>
+                    <p style="font-size: 1.5em;">¿Estás segura? Me pondré muy triste... 😢</p>
+                    <button id="noButtonAgain" class="button">Sí, estoy segura 😔</button>
+                `;
+                document.getElementById('noButtonAgain').addEventListener('click', () => {
+                    main.innerHTML = `
+                        <h1 style="color: #ff4d4d; font-size: 3em;">¿Estás segura? Solo hay un botón de "No" 😏</h1>
+                        <div class="tenor-gif-embed" data-postid="12365456011298358990" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+                        <div>
+                            ${'<button class="button">¡Sip! ❤️</button>'.repeat(50)}
+                            <button class="button" id="finalNoButton">Todavía no 😘</button>
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        const script = document.createElement('script');
+                        script.type = 'text/javascript';
+                        script.async = true;
+                        script.src = 'https://tenor.com/embed.js';
+                        document.body.appendChild(script);
+                    }, 100);
+                    document.getElementById('finalNoButton').addEventListener('click', () => {
+                        main.innerHTML = `
+                            <h1 style="color: #ff4d4d; font-size: 3em;">¡No puedes escapar! 😈</h1>
+                            <div class="tenor-gif-embed" data-postid="6622246970449762023" data-share-method="host" data-aspect-ratio="1.08392" data-width="100%"></div>
+                            <p style="font-size: 1.5em;">Te amo demasiado para aceptar un no ❤️</p>
+                            <button id="finalYesButton" class="button">¡Está bien, Sip! ❤️</button>
+                        `;
+                        setTimeout(() => {
+                            const script = document.createElement('script');
+                            script.type = 'text/javascript';
+                            script.async = true;
+                            script.src = 'https://tenor.com/embed.js';
+                            document.body.appendChild(script);
+                        }, 100);
+                        document.getElementById('finalYesButton').addEventListener('click', () => {
+                            main.innerHTML = `
+                                <h1 style="color: #ff4d4d; font-size: 3em;">¡Siiiu, te amo cariño! ❤️🥰</h1>
+                                <div class="tenor-gif-embed" data-postid="7720559233000690411" data-share-method="host" data-aspect-ratio="0.963855" data-width="100%"></div>
+                                <p style="font-size: 1.5em;">Siempre te voy a cuidar mucho 🤗💖</p>
+                            `;
+                            setTimeout(() => {
+                                const script = document.createElement('script');
+                                script.type = 'text/javascript';
+                                script.async = true;
+                                script.src = 'https://tenor.com/embed.js';
+                                document.body.appendChild(script);
+                            }, 100);
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
